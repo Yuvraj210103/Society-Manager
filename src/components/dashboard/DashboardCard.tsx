@@ -12,7 +12,7 @@ buttonTitle: string;
 
 const DashboardCard = ({bg,buttonTitle,icon,quantity,title}:DashboardCardProps) => {
   return (
-    <div className='flex flex-col w-full hover:scale-[1.01] duration-500'>
+    <div className='flex flex-col w-full hover:scale-[1.01] z-[0] duration-500'>
         <div className={`flex items-start gap-2 w-full ${bg === 'red' ? 'bg-red-500' : (bg === 'blue' ?'bg-blue-500':(bg==='yellow'? 'bg-yellow-500':(bg==='green' ? 'bg-green-500' : (bg === 'purple' && 'bg-purple-500'))) )} p-4 text-white rounded-t`}>
             <div>
                 {icon}

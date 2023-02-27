@@ -14,11 +14,11 @@ const Nav = () => {
   const [mobileNav, setMobileNav] = useState(false);
 
   return (
-    <nav className="sticky top-0">
-      <div className=" flex px-4 gap-4 bg-white shadow-sm py-6 md:py-3 items-center justify-between md:items-end md:justify-end w-full ">
+    <nav className="sticky top-0 z-[2]">
+      <div className=" flex px-4 z-[2]  gap-4 bg-white shadow-sm py-6 md:py-3 items-center justify-between md:items-end md:justify-end w-full ">
         <div
           onClick={() => setMobileNav(!mobileNav)}
-          className="cursor-pointer flex items-center md:mb-[3px]"
+          className="cursor-pointer flex items-center md:hidden"
         >
           {mobileNav ? <RxCross2 size={25} /> : <MdOutlineMenu size={25} 
           />}
@@ -30,8 +30,8 @@ const Nav = () => {
 
       <div
         className={`${
-          mobileNav ? "left-0" : "left-[-2000px]"
-        } flex flex-col gap-8 bg-white shadow justify-start w-10/12 md:w-1/5 px-4 pt-8 h-screen absolute duration-300 transition-all ease-in-out `}
+          mobileNav ? "left-0" : "left-[-2000px] md:left-0"
+        } flex flex-col gap-8 bg-white  shadow justify-start w-10/12 md:w-1/5 px-4 pt-8 h-screen absolute duration-300 transition-all ease-in-out `}
       >
         <div className="flex items-center gap-4 w-full cursor-pointer">
           <span>
