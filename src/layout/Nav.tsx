@@ -15,7 +15,7 @@ const Nav = () => {
 
   return (
     <nav className="sticky top-0 z-[2]">
-      <div className=" flex px-4 z-[2]  gap-4 bg-white shadow-sm py-6 md:py-3 items-center justify-between md:items-end md:justify-end w-full ">
+      <div className=" flex px-4 z-[2]  gap-4 bg-white shadow-sm py-6 md:py-8 items-center justify-between md:items-end md:justify-end w-full ">
         <div
           onClick={() => setMobileNav(!mobileNav)}
           className="cursor-pointer flex items-center md:hidden"
@@ -23,15 +23,23 @@ const Nav = () => {
           {mobileNav ? <RxCross2 size={25} /> : <MdOutlineMenu size={25} 
           />}
         </div>
-        <div className="text-lg font-semibold mr-auto w-24 md:w-32 flex items-center ">
-          <img src="/assets/images/logoSVG.svg" alt="" />
+        <div className="text-lg font-semibold mr-auto  flex items-center ">
+        <i
+                className="block h-[44px] w-48 cursor-pointer md:hidden"
+                style={{
+                  backgroundImage: "url('/assets/images/logoSVG.svg')",
+                  backgroundSize: '192px',
+                  backgroundRepeat: 'no-repeat',
+                }}
+              ></i>
+          
         </div>
       </div>
 
       <div
         className={`${
-          mobileNav ? "left-0" : "left-[-2000px] md:left-0"
-        } flex flex-col gap-8 bg-white  shadow justify-start w-10/12 md:w-1/5 px-4 pt-8 h-screen absolute duration-300 transition-all ease-in-out `}
+          mobileNav ? "left-0" : "left-[-2000px]"
+        } flex flex-col gap-8 bg-white  shadow justify-start w-10/12 md:w-1/5 px-4 pt-8 h-screen absolute duration-300 transition-all ease-in-out md:hidden`}
       >
         <div className="flex items-center gap-4 w-full cursor-pointer">
           <span>

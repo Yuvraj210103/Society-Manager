@@ -18,8 +18,8 @@ const DashboardCard = ({bg,buttonTitle,icon,quantity,title}:DashboardCardProps) 
                 {icon}
                 
             </div>
-            <div className='ml-auto flex flex-col items-end'>
-                <span className=' font-semibold'>{quantity}</span>
+            <div className='ml-auto flex flex-col items-end overflow-hidden whitespace-nowrap text-ellipsis'>
+                <span className=' font-semibold overflow-hidden whitespace-nowrap text-ellipsis'>{quantity}</span>
                 <span className='font-medium overflow-hidden whitespace-nowrap text-ellipsis'>{title}</span>
             </div>
         </div>
