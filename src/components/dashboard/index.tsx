@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsFillPeopleFill } from "react-icons/bs";
 import {
   MdAccountBalance,
@@ -12,6 +12,33 @@ import { FaTools } from "react-icons/fa";
 import ComplaintsBarGraph from "./ComplaintsBarGraph";
 
 const Dashboard = () => {
+  useEffect(() => {
+    if ("OTPCredential" in window) {
+      alert("Otp supported");
+      console.log("Otp supported");
+      window.addEventListener("DOMContentLoaded", (e) => {
+        e.preventDefault();
+        const ac = new AbortController();
+        navigator.credentials
+          .get({
+            otp: { transport: ["sms"] },
+            signal: ac.signal,
+          })
+          .then((otp) => {
+            if (otp?.code) {
+              alert(otp?.code + "This is otp");
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            alert(error + "Error");
+          });
+      });
+    } else {
+      alert("Otp Not supported");
+      console.log("Otp Not supported");
+    }
+  }, []);
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="font-semibold text-lg md:text-2xl">Admin Dashboard</div>
@@ -99,72 +126,112 @@ const Dashboard = () => {
                 <tbody className="border-t border-gray-600 [&>*:nth-child(even)]:bg-white overflow-x-scroll">
                   <tr>
                     <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">X-MAS celebration</span>
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        X-MAS celebration
+                      </span>
                     </td>
                     <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">25/12/2023</span>
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        25/12/2023
+                      </span>
                     </td>
                     <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">10.00pm-2.00am</span>
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        10.00pm-2.00am
+                      </span>
                     </td>
                     <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">Shubham</span>
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        Shubham
+                      </span>
                     </td>
                     <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">Club House</span>
-                    </td>
-                  </tr>
-                  {/* 2 row */}
-                  <tr>
-                    <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">X-MAS celebration</span>
-                    </td>
-                    <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">25/12/2023</span>
-                    </td>
-                    <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">10.00pm-2.00am</span>
-                    </td>
-                    <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">Shubham</span>
-                    </td>
-                    <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">Club House</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">X-MAS celebration</span>
-                    </td>
-                    <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">25/12/2023</span>
-                    </td>
-                    <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">10.00pm-2.00am</span>
-                    </td>
-                    <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">Shubham</span>
-                    </td>
-                    <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">Club House</span>
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        Club House
+                      </span>
                     </td>
                   </tr>
                   {/* 2 row */}
                   <tr>
                     <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">X-MAS celebration</span>
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        X-MAS celebration
+                      </span>
                     </td>
                     <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">25/12/2023</span>
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        25/12/2023
+                      </span>
                     </td>
                     <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">10.00pm-2.00am</span>
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        10.00pm-2.00am
+                      </span>
                     </td>
                     <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">Shubham</span>
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        Shubham
+                      </span>
                     </td>
                     <td className="text-start px-2 py-2">
-                      <span className="line-clamp-1 font-medium text-gray-700">Club House</span>
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        Club House
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="text-start px-2 py-2">
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        X-MAS celebration
+                      </span>
+                    </td>
+                    <td className="text-start px-2 py-2">
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        25/12/2023
+                      </span>
+                    </td>
+                    <td className="text-start px-2 py-2">
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        10.00pm-2.00am
+                      </span>
+                    </td>
+                    <td className="text-start px-2 py-2">
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        Shubham
+                      </span>
+                    </td>
+                    <td className="text-start px-2 py-2">
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        Club House
+                      </span>
+                    </td>
+                  </tr>
+                  {/* 2 row */}
+                  <tr>
+                    <td className="text-start px-2 py-2">
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        X-MAS celebration
+                      </span>
+                    </td>
+                    <td className="text-start px-2 py-2">
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        25/12/2023
+                      </span>
+                    </td>
+                    <td className="text-start px-2 py-2">
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        10.00pm-2.00am
+                      </span>
+                    </td>
+                    <td className="text-start px-2 py-2">
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        Shubham
+                      </span>
+                    </td>
+                    <td className="text-start px-2 py-2">
+                      <span className="line-clamp-1 font-medium text-gray-700">
+                        Club House
+                      </span>
                     </td>
                   </tr>
                 </tbody>
