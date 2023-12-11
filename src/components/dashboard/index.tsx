@@ -13,6 +13,7 @@ import ComplaintsBarGraph from "./ComplaintsBarGraph";
 
 const Dashboard = () => {
   const [otpReceived, setOtpReceived] = useState("");
+  const [credential, setCredential] = useState<Credential | null>(null);
   useEffect(() => {
     if ("OTPCredential" in window) {
       console.log("Otp supported");
@@ -24,6 +25,8 @@ const Dashboard = () => {
             signal: ac.signal,
           })
           .then((otp) => {
+            setCredential(otp);
+
             if (otp?.code) {
               setOtpReceived(otp?.code);
             }
@@ -42,6 +45,8 @@ const Dashboard = () => {
       <div className="font-semibold text-lg md:text-2xl">Admin Dashboard</div>
 
       <div className="text-4xl">This is the otp - {otpReceived}</div>
+
+      <div className="text-2xl">This is credential - {String(credential)}</div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-6 ">
         <div className="">
