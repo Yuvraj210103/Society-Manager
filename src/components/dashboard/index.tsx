@@ -17,7 +17,6 @@ const Dashboard = () => {
       alert("Otp supported");
       console.log("Otp supported");
       window.addEventListener("DOMContentLoaded", (e) => {
-        e.preventDefault();
         const ac = new AbortController();
         navigator.credentials
           .get({
@@ -25,6 +24,7 @@ const Dashboard = () => {
             signal: ac.signal,
           })
           .then((otp) => {
+            alert(otp + "then result");
             if (otp?.code) {
               alert(otp?.code + "This is otp");
             }
