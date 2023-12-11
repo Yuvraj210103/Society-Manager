@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillPeopleFill } from "react-icons/bs";
 import {
   MdAccountBalance,
@@ -12,11 +12,11 @@ import { FaTools } from "react-icons/fa";
 import ComplaintsBarGraph from "./ComplaintsBarGraph";
 
 const Dashboard = () => {
+  const [otpReceived, setOtpReceived] = useState("");
   useEffect(() => {
     if ("OTPCredential" in window) {
-      alert("Otp supported");
       console.log("Otp supported");
-      window.addEventListener("DOMContentLoaded", (e) => {
+      window.addEventListener("DOMContentLoaded", () => {
         const ac = new AbortController();
         navigator.credentials
           .get({
@@ -24,9 +24,8 @@ const Dashboard = () => {
             signal: ac.signal,
           })
           .then((otp) => {
-            alert(otp + "then result");
             if (otp?.code) {
-              alert(otp?.code + "This is otp");
+              setOtpReceived(otp?.code);
             }
           })
           .catch((error) => {
@@ -35,13 +34,14 @@ const Dashboard = () => {
           });
       });
     } else {
-      alert("Otp Not supported");
       console.log("Otp Not supported");
     }
   }, []);
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="font-semibold text-lg md:text-2xl">Admin Dashboard</div>
+
+      <div className="text-4xl">This is the otp - {otpReceived}</div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 w-full gap-6 ">
         <div className="">
