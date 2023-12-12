@@ -16,34 +16,34 @@ const Dashboard = () => {
   const [credential, setCredential] = useState<Credential | null>(null);
   useEffect(() => {
     if ("OTPCredential" in window) {
-      console.log("Otp supported");
-      window.addEventListener("DOMContentLoaded", () => {
-        const ac = new AbortController();
-        navigator.credentials
-          .get({
-            otp: { transport: ["sms"] },
-            signal: ac.signal,
-          })
-          .then((otp) => {
-            setCredential(otp);
-
-            if (otp?.code) {
-              setOtpReceived(otp?.code);
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            alert(error + "Error");
-          });
-      });
+      const input = document.querySelector(
+        'input[autocomplete="one-time-code"]'
+      ) as HTMLInputElement;
+      console.log("coming inside");
+      const ac = new AbortController();
+      navigator.credentials
+        .get({
+          otp: { transport: ["sms"] },
+          signal: ac.signal,
+        })
+        .then((otp) => {
+          setCredential(otp);
+          setOtpReceived(otp?.code || "not received");
+          input.value = otp?.code || "not recevived";
+          alert(otp?.code);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      console.log("Otp Not supported");
+      alert("WebOTP not supported!.");
     }
   }, []);
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="font-semibold text-lg md:text-2xl">Admin Dashboard</div>
 
+      <input type="text" inputMode="numeric" autoComplete="one-time-code" />
       <div className="text-4xl">This is the otp - {otpReceived}</div>
 
       <div className="text-2xl">This is credential - {String(credential)}</div>
