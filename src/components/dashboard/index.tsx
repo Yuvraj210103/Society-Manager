@@ -16,10 +16,10 @@ const Dashboard = () => {
   const [credential, setCredential] = useState<Credential | null>(null);
   useEffect(() => {
     if ("OTPCredential" in window) {
-      const input = document.querySelector(
+      /* const input = document.querySelector(
         'input[autocomplete="one-time-code"]'
       ) as HTMLInputElement;
-      console.log("coming inside");
+      console.log("coming inside"); */
       const ac = new AbortController();
       navigator.credentials
         .get({
@@ -29,7 +29,7 @@ const Dashboard = () => {
         .then((otp) => {
           setCredential(otp);
           setOtpReceived(otp?.code || "not received");
-          input.value = otp?.code || "not recevived";
+          //input.value = otp?.code || "not recevived";
           alert(otp?.code);
         })
         .catch((err) => {
@@ -43,7 +43,7 @@ const Dashboard = () => {
     <div className="flex flex-col gap-6 w-full">
       <div className="font-semibold text-lg md:text-2xl">Admin Dashboard</div>
 
-      <input type="text" inputMode="numeric" autoComplete="one-time-code" />
+      {/* <input type="text" inputMode="numeric" autoComplete="one-time-code" /> */}
       <div className="text-4xl">This is the otp - {otpReceived}</div>
 
       <div className="text-2xl">This is credential - {String(credential)}</div>
